@@ -24,6 +24,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Sphere, meta=(AllowPrivateAccess="true"))
 	class UStaticMeshComponent *SphereVisual;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Particle, meta=(AllowPrivateAccess="true"))
+	UParticleSystemComponent *OurParticleSystem;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Camera, meta=(AllowPrivateAccess="true"))
+	class USpringArmComponent *SpringArm;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Camera, meta=(AllowPrivateAccess="true"))
+	class UCameraComponent *Camera;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -31,6 +40,4 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
 };

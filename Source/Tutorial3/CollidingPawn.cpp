@@ -16,18 +16,42 @@ ACollidingPawn::ACollidingPawn()
     SphereComponent->SetCollisionProfileName(TEXT("Pawn"));
 
     // Create and position mesh component
-    SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisulRepresentation"));
+    SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualRepresentation"));
     SphereVisual->SetupAttachment(RootComponent);
-
     static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/Shapes/Shape_Sphere.Shape_Sphere"));
     if (SphereVisualAsset.Succeeded())
     {
-        UE_LOG(LogTemp, Warning, TEXT("Asset was found"));
+        SphereVisual->SetStaticMesh(SphereVisualAsset.Object);
+        SphereVisual->SetRelativeLocation(FVector(0.0f, 0.0f, -40.0f));
+        SphereVisual->SetWorldScale3D(FVector(0.8f));
     }
-    else
+
+    // Create a particle
+    OurParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("MovementParticles"));
+    OurParticleSystem->SetupAttachment(SphereVisual);
+    OurParticleSystem->bAutoActivate = false;
+    OurParticleSystem->SetRelativeLocation(FVector(-20.0f, 0.0f, 20.0f));
+    static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleAsset(TEXT("/Game/Particles/P_Fire.P_Fire"));
+    if (ParticleAsset.Succeeded())
     {
-        UE_LOG(LogTemp, Warning, TEXT("Can not find asset"));
+        OurParticleSystem->SetTemplate(ParticleAsset.Object);
     }
+
+    // Spring camera
+    SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraAttachmentArm"));
+    SpringArm->SetupAttachment(RootComponent);
+    SpringArm->RelativeRotation = FRotator(-45.0f, 0.0f, 0.0f);
+    SpringArm->TargetArmLength = 400.0f;
+    SpringArm->bEnableCameraLag = true;
+    SpringArm->CameraLagSpeed = 3.0f;
+
+    // Create camera
+    Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ActualCamera"));
+    Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+
+    // Take control of the default player
+    AutoPossessPlayer = EAutoReceiveInput::Player0;
+
 }
 
 // Called when the game starts or when spawned
