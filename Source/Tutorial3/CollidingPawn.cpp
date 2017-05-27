@@ -18,7 +18,7 @@ ACollidingPawn::ACollidingPawn()
     // Create and position mesh component
     SphereVisual = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("VisualRepresentation"));
     SphereVisual->SetupAttachment(RootComponent);
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/Shapes/Shape_Sphere.Shape_Sphere"));
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere"));
     if (SphereVisualAsset.Succeeded())
     {
         SphereVisual->SetStaticMesh(SphereVisualAsset.Object);
@@ -31,7 +31,7 @@ ACollidingPawn::ACollidingPawn()
     OurParticleSystem->SetupAttachment(SphereVisual);
     OurParticleSystem->bAutoActivate = false;
     OurParticleSystem->SetRelativeLocation(FVector(-20.0f, 0.0f, 20.0f));
-    static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleAsset(TEXT("/Game/Particles/P_Fire.P_Fire"));
+    static ConstructorHelpers::FObjectFinder<UParticleSystem> ParticleAsset(TEXT("/Game/StarterContent/Particles/P_Fire.P_Fire"));
     if (ParticleAsset.Succeeded())
     {
         OurParticleSystem->SetTemplate(ParticleAsset.Object);
