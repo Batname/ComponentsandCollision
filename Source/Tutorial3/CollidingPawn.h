@@ -33,11 +33,20 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Camera, meta=(AllowPrivateAccess="true"))
 	class UCameraComponent *Camera;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	virtual UPawnMovementComponent* GetMovementComponent() const override;
+
+	class UCollidingPawnMovementComponent *OurMovementComponent;
+
+	// Movement control
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void Turn(float AxisValue);
+	void ParticleToggle();
 };

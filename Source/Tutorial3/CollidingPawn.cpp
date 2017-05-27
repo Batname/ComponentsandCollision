@@ -3,6 +3,8 @@
 #include "Tutorial3.h"
 #include "CollidingPawn.h"
 
+#include "CollidingPawnMovementComponent.h"
+
 
 // Sets default values
 ACollidingPawn::ACollidingPawn()
@@ -49,6 +51,10 @@ ACollidingPawn::ACollidingPawn()
     Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ActualCamera"));
     Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
+    // Create instants of movement component
+    OurMovementComponent = CreateDefaultSubobject<UCollidingPawnMovementComponent>(TEXT("CustomMovementComponent"));
+    OurMovementComponent->UpdatedComponent = RootComponent;
+
     // Take control of the default player
     AutoPossessPlayer = EAutoReceiveInput::Player0;
 
@@ -73,6 +79,47 @@ void ACollidingPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+    InputComponent->BindAction("ParticleToggle", IE_Pressed, this, &ACollidingPawn::ParticleToggle);
+
+    InputComponent->BindAxis("MoveForward", this, &ACollidingPawn::MoveForward);
+    InputComponent->BindAxis("MoveRight", this, &ACollidingPawn::MoveRight);
+    InputComponent->BindAxis("Turn", this, &ACollidingPawn::Turn);
+
+}
+
+void ACollidingPawn::MoveForward(float AxisValue)
+{
+    if (OurMovementComponent && (OurMovementComponent->UpdatedComponent == RootComponent))
+    {
+        OurMovementComponent->AddInputVector(GetActorForwardVector() * AxisValue);
+    }
+}
+
+void ACollidingPawn::MoveRight(float AxisValue)
+{
+    if (OurMovementComponent && (OurMovementComponent->UpdatedComponent == RootComponent))
+    {
+        OurMovementComponent->AddInputVector(GetActorRightVector() * AxisValue);
+    }
+}
+
+void ACollidingPawn::Turn(float AxisValue)
+{
+    FRotator NewRotation = GetActorRotation();
+    NewRotation.Yaw += AxisValue;
+    SetActorRotation(NewRotation);
+}
+
+void ACollidingPawn::ParticleToggle()
+{
+    if (OurParticleSystem && OurParticleSystem->Template)
+    {
+        OurParticleSystem->ToggleActive();
+    }
 }
 
 
+UPawnMovementComponent* ACollidingPawn::GetMovementComponent() const
+{
+    return OurMovementComponent;
+}
