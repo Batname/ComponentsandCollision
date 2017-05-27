@@ -8330,6 +8330,7 @@ HEADERS += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/CompareScreenshotsCommandlet.h" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h" \
 	"$$Tutorial3RootPath/Source/Tutorial3/CollidingPawn.h" \
+	"$$Tutorial3RootPath/Source/Tutorial3/CollidingPawnMovementComponent.h" \
 	"$$Tutorial3RootPath/Source/Tutorial3/Tutorial3.h" \
 	"$$Tutorial3RootPath/Source/Tutorial3/Tutorial3GameModeBase.h" \
  

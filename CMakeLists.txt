@@ -6424,6 +6424,7 @@ set(SOURCE_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/CompareScreenshotsCommandlet.cpp"
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/CollidingPawn.cpp"
+	"${GAME_ROOT_PATH}/Source/Tutorial3/CollidingPawnMovementComponent.cpp"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/Tutorial3.cpp"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/Tutorial3GameModeBase.cpp"
  )
@@ -14760,6 +14761,7 @@ set(HEADER_FILES
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/CompareScreenshotsCommandlet.h"
 	"${UE4_ROOT_PATH}/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Public/ScreenshotTools.h"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/CollidingPawn.h"
+	"${GAME_ROOT_PATH}/Source/Tutorial3/CollidingPawnMovementComponent.h"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/Tutorial3.h"
 	"${GAME_ROOT_PATH}/Source/Tutorial3/Tutorial3GameModeBase.h"
  )

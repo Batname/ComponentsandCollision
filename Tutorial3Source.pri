@@ -6413,6 +6413,7 @@ SOURCES += \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/CompareScreenshotsCommandlet.cpp" \
 	"$$unrealRootPath/Engine/Plugins/Tests/ScreenshotTools/Source/ScreenshotTools/Private/ScreenshotTools.cpp" \
 	"$$Tutorial3RootPath/Source/Tutorial3/CollidingPawn.cpp" \
+	"$$Tutorial3RootPath/Source/Tutorial3/CollidingPawnMovementComponent.cpp" \
 	"$$Tutorial3RootPath/Source/Tutorial3/Tutorial3.cpp" \
 	"$$Tutorial3RootPath/Source/Tutorial3/Tutorial3GameModeBase.cpp" \
  
