@@ -33,6 +33,8 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Camera, meta=(AllowPrivateAccess="true"))
 	class UCameraComponent *Camera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category=Movement, meta=(AllowPrivateAccess="true"))
+	class UCollidingPawnMovementComponent *OurMovementComponent;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -41,8 +43,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual UPawnMovementComponent* GetMovementComponent() const override;
-
-	class UCollidingPawnMovementComponent *OurMovementComponent;
 
 	// Movement control
 	void MoveForward(float AxisValue);
