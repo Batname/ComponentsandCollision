@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{1D5873B4-2D05-1315-002C-03D21D4138B3}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Tutorial3",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
