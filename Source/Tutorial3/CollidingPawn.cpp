@@ -80,6 +80,7 @@ void ACollidingPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
     InputComponent->BindAction("ParticleToggle", IE_Pressed, this, &ACollidingPawn::ParticleToggle);
+    InputComponent->BindAction("SwapLevel", IE_Pressed, this, &ACollidingPawn::SwapLevel);
 
     InputComponent->BindAxis("MoveForward", this, &ACollidingPawn::MoveForward);
     InputComponent->BindAxis("MoveRight", this, &ACollidingPawn::MoveRight);
@@ -115,6 +116,21 @@ void ACollidingPawn::ParticleToggle()
     if (OurParticleSystem && OurParticleSystem->Template)
     {
         OurParticleSystem->ToggleActive();
+    }
+}
+
+void ACollidingPawn::SwapLevel()
+{
+    UWorld *TheWorld = GetWorld();
+    FString CurrentLevel = TheWorld->GetMapName();
+
+    if (CurrentLevel.Contains("Level1"))
+    {
+        UGameplayStatics::OpenLevel(GetWorld(), "/Game/Levels/Level2");
+    }
+    else
+    {
+        UGameplayStatics::OpenLevel(GetWorld(), "/Game/Levels/Level1");
     }
 }
 

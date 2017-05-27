@@ -49,4 +49,5 @@ public:
 	void MoveRight(float AxisValue);
 	void Turn(float AxisValue);
 	void ParticleToggle();
+	void SwapLevel();
 };
